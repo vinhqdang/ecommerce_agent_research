@@ -1,0 +1,6 @@
+regime,independent_sellers,shared_seller_provider
+M0_posted,0.1015,0.1012
+M1_search,0.595,0.5499
+M2_bilateral_price,0.595,0.5499
+M3_bilateral_multiattr,0.595,0.5499
+M4_competitive,0.4532,0.4128

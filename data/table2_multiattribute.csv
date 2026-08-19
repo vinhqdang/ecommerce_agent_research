@@ -1,0 +1,6 @@
+regime,multiattribute,n,price_mean,cs_mean,ps_mean,welfare_mean,bundle_realized_rate
+M2_bilateral_price,price_only,19200,637.52,341.76,101.01,442.77,0.0
+M3_bilateral_multiattr,multi_attribute,19200,637.54,380.43,75.98,456.41,0.42
+M3_bilateral_multiattr,price_only,19200,637.56,341.72,101.05,442.77,0.0
+M4_competitive,multi_attribute,19200,642.47,391.61,63.28,454.89,0.52
+M4_competitive,price_only,19200,635.97,343.3,97.89,441.19,0.0

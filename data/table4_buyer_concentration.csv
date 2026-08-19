@@ -1,0 +1,3 @@
+buyer_concentration,n,price_mean,cs_mean,ps_mean,cs_share_mean
+common_buyer_provider,48000,634.42,362.14,83.87,0.8
+independent_buyers,48000,642.0,357.39,91.81,0.79

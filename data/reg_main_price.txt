@@ -1,0 +1,34 @@
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                  price   R-squared:                       0.593
+Model:                            OLS   Adj. R-squared:                  0.593
+Method:                 Least Squares   F-statistic:                     1264.
+Date:                Wed, 19 Aug 2026   Prob (F-statistic):           8.43e-83
+Time:                        15:30:30   Log-Likelihood:            -5.0145e+05
+No. Observations:              105600   AIC:                         1.003e+06
+Df Residuals:                  105589   BIC:                         1.003e+06
+Df Model:                          10                                         
+Covariance Type:              cluster                                         
+=========================================================================================================================================
+                                                                            coef    std err          z      P>|z|      [0.025      0.975]
+-----------------------------------------------------------------------------------------------------------------------------------------
+Intercept                                                               668.7314      3.207    208.535      0.000     662.446     675.017
+C(regime, Treatment(reference='M0_posted'))[T.M1_search]                -49.1675      1.756    -27.998      0.000     -52.609     -45.726
+C(regime, Treatment(reference='M0_posted'))[T.M2_bilateral_price]       -48.5164      1.644    -29.510      0.000     -51.739     -45.294
+C(regime, Treatment(reference='M0_posted'))[T.M3_bilateral_multiattr]   -50.1074      1.674    -29.928      0.000     -53.389     -46.826
+C(regime, Treatment(reference='M0_posted'))[T.M4_competitive]           -48.4359      1.593    -30.406      0.000     -51.558     -45.314
+C(multiattribute)[T.price_only]                                          -3.2376      0.136    -23.748      0.000      -3.505      -2.970
+C(info_level, Treatment(reference='low'))[T.high]                        81.0955      1.512     53.639      0.000      78.132      84.059
+C(info_level, Treatment(reference='low'))[T.history]                      7.6696      0.434     17.652      0.000       6.818       8.521
+C(info_level, Treatment(reference='low'))[T.preference]                   2.8894      0.144     20.128      0.000       2.608       3.171
+C(seller_concentration)[T.shared_seller_provider]                       -11.7869      3.334     -3.535      0.000     -18.322      -5.252
+C(buyer_concentration)[T.independent_buyers]                              7.0454      3.334      2.113      0.035       0.511      13.580
+==============================================================================
+Omnibus:                     5934.692   Durbin-Watson:                   0.870
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):            11850.201
+Skew:                           0.404   Prob(JB):                         0.00
+Kurtosis:                       4.429   Cond. No.                         17.8
+==============================================================================
+
+Notes:
+[1] Standard Errors are robust to cluster correlation (cluster)

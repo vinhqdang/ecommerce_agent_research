@@ -1,0 +1,142 @@
+/opt/miniconda3/envs/py313/lib/python3.13/site-packages/statsmodels/base/model.py:1894: ValueWarning: covariance of constraints does not have full rank. The number of constraints is 7, but rank is 6
+  warnings.warn('covariance of constraints does not have full '
+=== TABLE 1: Regime-level outcomes ===
+                            n  price_mean  price_sd  cs_mean   cs_sd  ps_mean  ps_sd  welfare_mean  welfare_sd  rounds_mean  \
+regime                                                                                                                        
+M0_posted                4800      663.12     41.89   316.15  122.70    99.95  28.41        416.10      119.39         0.00   
+M1_search                4800      613.96     22.63   365.32  117.74    77.45  19.08        442.77      116.43         0.00   
+M2_bilateral_price      19200      637.52     43.49   341.76  112.72   101.01  41.96        442.77      116.42         3.52   
+M3_bilateral_multiattr  38400      637.55     43.57   361.08  117.76    88.51  47.72        449.59      117.04         3.52   
+M4_competitive          38400      639.22     44.64   367.46  119.12    80.58  48.31        448.04      116.98         3.43   
+
+                        raw_agree_rate  
+regime                                  
+M0_posted                         1.00  
+M1_search                         1.00  
+M2_bilateral_price                0.99  
+M3_bilateral_multiattr            0.99  
+M4_competitive                    1.00  
+
+=== TABLE 2: Price-only vs multi-attribute negotiation ===
+                                            n  price_mean  cs_mean  ps_mean  welfare_mean  bundle_realized_rate
+regime                 multiattribute                                                                          
+M2_bilateral_price     price_only       19200      637.52   341.76   101.01        442.77                  0.00
+M3_bilateral_multiattr multi_attribute  19200      637.54   380.43    75.98        456.41                  0.42
+                       price_only       19200      637.56   341.72   101.05        442.77                  0.00
+M4_competitive         multi_attribute  19200      642.47   391.61    63.28        454.89                  0.52
+                       price_only       19200      635.97   343.30    97.89        441.19                  0.00
+
+=== TABLE 3: Seller information level and surplus split ===
+                n  price_mean  cs_mean  ps_mean  cs_share_mean
+info_level                                                    
+low         24000      615.30   378.61    68.25           0.84
+preference  24000      618.19   379.42    69.02           0.84
+history     24000      622.97   376.50    72.69           0.83
+high        24000      696.39   304.53   141.40           0.68
+
+=== Regression: consumer surplus share on information level (clustered SE by market) ===
+===========================================================================================================================
+                                                              coef    std err          z      P>|z|      [0.025      0.975]
+---------------------------------------------------------------------------------------------------------------------------
+Intercept                                                   0.8042      0.004    225.738      0.000       0.797       0.811
+C(info_level, Treatment(reference='low'))[T.preference]    -0.0013      0.000     -3.103      0.002      -0.002      -0.000
+C(info_level, Treatment(reference='low'))[T.history]       -0.0088      0.001    -10.450      0.000      -0.010      -0.007
+C(info_level, Treatment(reference='low'))[T.high]          -0.1604      0.003    -56.281      0.000      -0.166      -0.155
+C(regime)[T.M3_bilateral_multiattr]                         0.0322      0.001     33.342      0.000       0.030       0.034
+C(regime)[T.M4_competitive]                                 0.0498      0.001     53.564      0.000       0.048       0.052
+===========================================================================================================================
+
+=== TABLE 4: Buyer-agent-provider concentration and surplus split ===
+                           n  price_mean  cs_mean  ps_mean  cs_share_mean
+buyer_concentration                                                      
+common_buyer_provider  48000      634.42   362.14    83.87           0.80
+independent_buyers     48000      642.00   357.39    91.81           0.79
+
+=== Regression: consumer surplus share on buyer-agent concentration ===
+================================================================================================================
+                                                   coef    std err          z      P>|z|      [0.025      0.975]
+----------------------------------------------------------------------------------------------------------------
+Intercept                                        0.8122      0.005    174.558      0.000       0.803       0.821
+C(buyer_concentration)[T.independent_buyers]    -0.0160      0.006     -2.843      0.004      -0.027      -0.005
+C(regime)[T.M3_bilateral_multiattr]              0.0322      0.001     33.342      0.000       0.030       0.034
+C(regime)[T.M4_competitive]                      0.0498      0.001     53.563      0.000       0.048       0.052
+C(info_level)[T.preference]                     -0.0013      0.000     -3.103      0.002      -0.002      -0.000
+C(info_level)[T.history]                        -0.0088      0.001    -10.450      0.000      -0.010      -0.007
+C(info_level)[T.high]                           -0.1604      0.003    -56.281      0.000      -0.166      -0.155
+================================================================================================================
+
+=== TABLE 5: Seller-agent-provider concentration and within-market price/markup dispersion ===
+                        markup_sd  markup_mean  price_cv
+seller_concentration                                    
+independent_sellers        0.0684        0.196    0.0600
+shared_seller_provider     0.0737        0.171    0.0667
+
+=== Seller win-share HHI by regime and seller-agent concentration ===
+seller_concentration    independent_sellers  shared_seller_provider
+regime                                                             
+M0_posted                            0.1015                  0.1012
+M1_search                            0.5950                  0.5499
+M2_bilateral_price                   0.5950                  0.5499
+M3_bilateral_multiattr               0.5950                  0.5499
+M4_competitive                       0.4532                  0.4128
+
+=== Main regression: total welfare ===
+=========================================================================================================================================
+                                                                            coef    std err          z      P>|z|      [0.025      0.975]
+-----------------------------------------------------------------------------------------------------------------------------------------
+Intercept                                                               428.2299      2.721    157.358      0.000     422.896     433.564
+C(regime, Treatment(reference='M0_posted'))[T.M1_search]                 26.6681      1.239     21.523      0.000      24.240      29.097
+C(regime, Treatment(reference='M0_posted'))[T.M2_bilateral_price]        26.6681      1.239     21.523      0.000      24.240      29.097
+C(regime, Treatment(reference='M0_posted'))[T.M3_bilateral_multiattr]    26.6539      1.286     20.732      0.000      24.134      29.174
+C(regime, Treatment(reference='M0_posted'))[T.M4_competitive]            25.1098      1.156     21.714      0.000      22.843      27.376
+C(multiattribute)[T.price_only]                                         -13.6720      0.469    -29.134      0.000     -14.592     -12.752
+C(seller_concentration)[T.shared_seller_provider]                        -0.1641      3.859     -0.043      0.966      -7.727       7.399
+C(buyer_concentration)[T.independent_buyers]                              3.2441      3.859      0.841      0.400      -4.319      10.807
+=========================================================================================================================================
+
+=== Main regression: transaction price ===
+=========================================================================================================================================
+                                                                            coef    std err          z      P>|z|      [0.025      0.975]
+-----------------------------------------------------------------------------------------------------------------------------------------
+Intercept                                                               668.7314      3.207    208.535      0.000     662.446     675.017
+C(regime, Treatment(reference='M0_posted'))[T.M1_search]                -49.1675      1.756    -27.998      0.000     -52.609     -45.726
+C(regime, Treatment(reference='M0_posted'))[T.M2_bilateral_price]       -48.5164      1.644    -29.510      0.000     -51.739     -45.294
+C(regime, Treatment(reference='M0_posted'))[T.M3_bilateral_multiattr]   -50.1074      1.674    -29.928      0.000     -53.389     -46.826
+C(regime, Treatment(reference='M0_posted'))[T.M4_competitive]           -48.4359      1.593    -30.406      0.000     -51.558     -45.314
+C(multiattribute)[T.price_only]                                          -3.2376      0.136    -23.748      0.000      -3.505      -2.970
+C(info_level, Treatment(reference='low'))[T.high]                        81.0955      1.512     53.639      0.000      78.132      84.059
+C(info_level, Treatment(reference='low'))[T.history]                      7.6696      0.434     17.652      0.000       6.818       8.521
+C(info_level, Treatment(reference='low'))[T.preference]                   2.8894      0.144     20.128      0.000       2.608       3.171
+C(seller_concentration)[T.shared_seller_provider]                       -11.7869      3.334     -3.535      0.000     -18.322      -5.252
+C(buyer_concentration)[T.independent_buyers]                              7.0454      3.334      2.113      0.035       0.511      13.580
+=========================================================================================================================================/Users/vinhdq1/work/ecommerce_agent_research/code/analysis.py:205: FutureWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
+  iccs = seller_avg.groupby("market_id").apply(icc_by_market)
+
+
+=== HEADLINE NUMBERS ===
+bundle_realization_rate: 0.46825520833333334
+avg_net_bundle_surplus_when_realized: 35.79998119051186
+welfare_gain_M3_vs_M2: 13.643644341385311
+welfare_M0: 416.0978705339062
+welfare_M1: 442.76598736724077
+welfare_M2: 442.7659873672409
+welfare_M3_multiattr: 456.4096317086262
+welfare_M4_multiattr: 454.89378833808837
+price_M0: 663.1229620404309
+price_M1: 613.9554890077404
+price_M2: 637.5201976515425
+cs_share_low_info: 0.8369924335569604
+cs_share_high_info: 0.6766023094445739
+cs_low_info: 378.6144396404688
+cs_high_info: 304.52590330814934
+cs_share_independent_buyers: 0.7863656950225619
+cs_share_common_buyer_provider: 0.8023825800080792
+markup_sd_independent_sellers: 0.06840634266615256
+markup_sd_shared_seller_provider: 0.07365335490363387
+price_cv_independent_sellers: 0.05999397562045805
+price_cv_shared_seller_provider: 0.06667528194760129
+provider_group_markup_variance_share: 0.4543023690919027
+n_transactions_total: 105600
+n_replicate_markets: 80
+raw_agreement_rate_bargaining: 0.9919791666666666
+mean_rounds_bargaining: 3.4859791666666666

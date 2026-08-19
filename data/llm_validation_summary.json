@@ -1,0 +1,44 @@
+{
+  "llm_pilot": {
+    "n_total_episodes": 36,
+    "n_failed_episodes": 6,
+    "overall_deal_rate": 0.8333333333333334,
+    "by_regime": {
+      "multiattr": {
+        "n_episodes": 18,
+        "deal_rate": 0.7222222222222222,
+        "mean_price": 788.4615384615385,
+        "mean_welfare": 392.01926664200346
+      },
+      "price_only": {
+        "n_episodes": 18,
+        "deal_rate": 0.9444444444444444,
+        "mean_price": 800.5882352941177,
+        "mean_welfare": 483.9462030493293
+      }
+    },
+    "by_regime_conditional_on_deal": {
+      "multiattr": {
+        "n_deals": 13,
+        "mean_price_given_deal": 788.4615384615385,
+        "mean_welfare_given_deal": 542.7959076581586
+      },
+      "price_only": {
+        "n_deals": 17,
+        "mean_price_given_deal": 800.5882352941177,
+        "mean_welfare_given_deal": 512.4136267581134
+      }
+    },
+    "welfare_gain_multiattr_vs_price_only_llm_unconditional": -91.92693640732585,
+    "welfare_gain_multiattr_vs_price_only_llm_given_deal": 30.382280900045203
+  },
+  "rule_based_comparison": {
+    "welfare_M2_price_only_rule_based": 442.8119438462317,
+    "welfare_M3_multiattr_rule_based": 456.242878702129,
+    "price_M2_rule_based": 634.4545540452374,
+    "welfare_gain_M3_vs_M2_rule_based": 13.430934855897306
+  },
+  "directional_agreement_with_rule_based_unconditional": false,
+  "directional_agreement_with_rule_based_given_deal": true,
+  "note": "N=36 pilot with real free-tier LLM APIs; the unconditional comparison is confounded because multiattr happened to draw more API-failure episodes (zero-filled), which by itself lowers its mean welfare. The deal-conditional comparison isolates surplus-creation-when-successful, which is what M2 vs M3 measures in the rule-based simulation (whose bargaining agreement rate is ~99%, so this confound barely exists there)."
+}
