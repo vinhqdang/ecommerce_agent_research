@@ -33,10 +33,10 @@
     "welfare_gain_multiattr_vs_price_only_llm_given_deal": 30.382280900045203
   },
   "rule_based_comparison": {
-    "welfare_M2_price_only_rule_based": 442.8119438462317,
-    "welfare_M3_multiattr_rule_based": 456.242878702129,
-    "price_M2_rule_based": 634.4545540452374,
-    "welfare_gain_M3_vs_M2_rule_based": 13.430934855897306
+    "welfare_M2_price_only_rule_based": 442.7659873672409,
+    "welfare_M3_multiattr_rule_based": 456.4096317086262,
+    "price_M2_rule_based": 637.5201976515425,
+    "welfare_gain_M3_vs_M2_rule_based": 13.643644341385311
   },
   "directional_agreement_with_rule_based_unconditional": false,
   "directional_agreement_with_rule_based_given_deal": true,
