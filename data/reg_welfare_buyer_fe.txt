@@ -1,0 +1,32 @@
+                                 OLS Regression Results                                
+=======================================================================================
+Dep. Variable:       welfare_demeaned   R-squared (uncentered):                   0.272
+Model:                            OLS   Adj. R-squared (uncentered):              0.272
+Method:                 Least Squares   F-statistic:                              505.9
+Date:                Thu, 20 Aug 2026   Prob (F-statistic):                    1.99e-55
+Time:                        09:52:42   Log-Likelihood:                     -4.3533e+05
+No. Observations:              105600   AIC:                                  8.707e+05
+Df Residuals:                  105595   BIC:                                  8.707e+05
+Df Model:                           5                                                  
+Covariance Type:              cluster                                                  
+=================================================================================================
+                                    coef    std err          z      P>|z|      [0.025      0.975]
+-------------------------------------------------------------------------------------------------
+regime_M1_search                 26.6681      1.239     21.524      0.000      24.240      29.097
+regime_M2_bilateral_price        26.6681      1.239     21.524      0.000      24.240      29.097
+regime_M3_bilateral_multiattr    26.6539      1.286     20.732      0.000      24.134      29.174
+regime_M4_competitive            25.1098      1.156     21.714      0.000      22.843      27.376
+ma_price_only                   -13.6720      0.469    -29.135      0.000     -14.592     -12.752
+==============================================================================
+Omnibus:                    20280.324   Durbin-Watson:                   2.181
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):           191158.471
+Skew:                          -0.656   Prob(JB):                         0.00
+Kurtosis:                       9.460   Cond. No.                         5.98
+==============================================================================
+
+Notes:
+[1] R² is computed without centering (uncentered) since the model does not contain a constant.
+[2] Standard Errors are robust to cluster correlation (cluster)
+
+Within-buyer R^2: 0.2717
+Pooled OLS R^2 (reg_main_welfare.txt): 0.0062

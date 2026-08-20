@@ -160,6 +160,38 @@ print(m_welfare.summary().tables[1])
 with open(OUT + "reg_main_welfare.txt", "w") as f:
     f.write(str(m_welfare.summary()))
 
+# ---------------------------------------------------------------
+# Buyer-fixed-effects (within-buyer) welfare regression, added on
+# revision to exploit the matched design's identification power
+# directly, per a reviewer comment that the pooled specification (R^2
+# = 0.006 above) leaves the "same buyers run through every regime"
+# design's efficiency gain on the table. buyer_id is unique per buyer
+# per replicate market, so it is invariant to (and therefore absorbs)
+# seller_concentration/buyer_concentration -- those effects are, by
+# construction, only identified by between-buyer/between-market
+# variation, which is exactly what the market-clustered regressions
+# above and below are for. This regression instead isolates the
+# within-buyer regime/bargaining-scope effects with buyer heterogeneity
+# fully differenced out.
+df["welfare_demeaned"] = df["welfare"] - df.groupby("buyer_id")["welfare"].transform("mean")
+regime_dummies = pd.get_dummies(df["regime"], prefix="regime", drop_first=True).astype(float)
+multiattr_dummies = pd.get_dummies(df["multiattribute"], prefix="ma", drop_first=True).astype(float)
+fe_design = pd.concat([regime_dummies, multiattr_dummies], axis=1)
+for col in fe_design.columns:
+    fe_design[col] = fe_design[col] - fe_design.groupby(df["buyer_id"])[col].transform("mean")
+fe_design["welfare_demeaned"] = df["welfare_demeaned"]
+fe_design["market_id"] = df["market_id"]
+m_welfare_fe = smf.ols(
+    "welfare_demeaned ~ " + " + ".join(c for c in fe_design.columns if c not in ("welfare_demeaned", "market_id")) + " - 1",
+    data=fe_design).fit(cov_type="cluster", cov_kwds={"groups": fe_design["market_id"]})
+print("\n=== Buyer-fixed-effects (within-buyer) regression: total welfare ===")
+print(m_welfare_fe.summary().tables[1])
+print(f"Within-buyer R^2: {m_welfare_fe.rsquared:.4f}  (pooled OLS R^2 above: {m_welfare.rsquared:.4f})")
+with open(OUT + "reg_welfare_buyer_fe.txt", "w") as f:
+    f.write(str(m_welfare_fe.summary()))
+    f.write(f"\n\nWithin-buyer R^2: {m_welfare_fe.rsquared:.4f}\n")
+    f.write(f"Pooled OLS R^2 (reg_main_welfare.txt): {m_welfare.rsquared:.4f}\n")
+
 m_price = smf.ols(
     "price ~ C(regime, Treatment(reference='M0_posted')) + C(multiattribute) + "
     "C(info_level, Treatment(reference='low')) + C(seller_concentration) + C(buyer_concentration)",

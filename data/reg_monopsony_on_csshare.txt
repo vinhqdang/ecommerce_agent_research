@@ -3,8 +3,8 @@
 Dep. Variable:               cs_share   R-squared:                       0.411
 Model:                            OLS   Adj. R-squared:                  0.411
 Method:                 Least Squares   F-statistic:                     2140.
-Date:                Wed, 19 Aug 2026   Prob (F-statistic):           3.03e-85
-Time:                        15:30:30   Log-Likelihood:             1.0063e+05
+Date:                Thu, 20 Aug 2026   Prob (F-statistic):           3.03e-85
+Time:                        09:52:41   Log-Likelihood:             1.0063e+05
 No. Observations:               96000   AIC:                        -2.012e+05
 Df Residuals:                   95993   BIC:                        -2.012e+05
 Df Model:                           6                                         

@@ -159,14 +159,14 @@ class Buyer:
     # fresh random re-draw of which seller "happens" to look best.
 
 
-def make_buyers(rng, n, buyer_provider="independent_buyers"):
+def make_buyers(rng, n, buyer_provider="independent_buyers", common_provider_rate=0.70):
     valuation = rng.uniform(780, 1180, size=n)
     budget = valuation * rng.uniform(1.00, 1.12, size=n)
     urgency = rng.beta(2, 5, size=n)
     has_history = rng.random(n) < 0.30
     wants_bundle = rng.random(n) < 0.55
     if buyer_provider == "common_buyer_provider":
-        common_flag = rng.random(n) < 0.70   # 70% concentrated on one provider
+        common_flag = rng.random(n) < common_provider_rate
     else:
         common_flag = np.zeros(n, dtype=bool)
     buyers = [

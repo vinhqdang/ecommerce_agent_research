@@ -1,5 +1,7 @@
 /opt/miniconda3/envs/py313/lib/python3.13/site-packages/statsmodels/base/model.py:1894: ValueWarning: covariance of constraints does not have full rank. The number of constraints is 7, but rank is 6
   warnings.warn('covariance of constraints does not have full '
+/opt/miniconda3/envs/py313/lib/python3.13/site-packages/statsmodels/base/model.py:1894: ValueWarning: covariance of constraints does not have full rank. The number of constraints is 5, but rank is 4
+  warnings.warn('covariance of constraints does not have full '
 === TABLE 1: Regime-level outcomes ===
                             n  price_mean  price_sd  cs_mean   cs_sd  ps_mean  ps_sd  welfare_mean  welfare_sd  rounds_mean  \
 regime                                                                                                                        
@@ -94,6 +96,20 @@ C(seller_concentration)[T.shared_seller_provider]                        -0.1641
 C(buyer_concentration)[T.independent_buyers]                              3.2441      3.859      0.841      0.400      -4.319      10.807
 =========================================================================================================================================
 
+=== Buyer-fixed-effects (within-buyer) regression: total welfare ===
+=================================================================================================
+                                    coef    std err          z      P>|z|      [0.025      0.975]
+-------------------------------------------------------------------------------------------------
+regime_M1_search                 26.6681      1.239     21.524      0.000      24.240      29.097
+regime_M2_bilateral_price        26.6681      1.239     21.524      0.000      24.240      29.097
+regime_M3_bilateral_multiattr    26.6539      1.286     20.732      0.000      24.134      29.174
+regime_M4_competitive            25.1098      1.156     21.714      0.000      22.843      27.376
+ma_price_only                   -13.6720      0.469    -29.135      0.000     -14.592     -12.752
+=================================================================================================/Users/vinhdq1/work/ecommerce_agent_research/code/analysis.py:237: FutureWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
+  iccs = seller_avg.groupby("market_id").apply(icc_by_market)
+
+Within-buyer R^2: 0.2717  (pooled OLS R^2 above: 0.0062)
+
 === Main regression: transaction price ===
 =========================================================================================================================================
                                                                             coef    std err          z      P>|z|      [0.025      0.975]
@@ -109,9 +125,7 @@ C(info_level, Treatment(reference='low'))[T.history]                      7.6696
 C(info_level, Treatment(reference='low'))[T.preference]                   2.8894      0.144     20.128      0.000       2.608       3.171
 C(seller_concentration)[T.shared_seller_provider]                       -11.7869      3.334     -3.535      0.000     -18.322      -5.252
 C(buyer_concentration)[T.independent_buyers]                              7.0454      3.334      2.113      0.035       0.511      13.580
-=========================================================================================================================================/Users/vinhdq1/work/ecommerce_agent_research/code/analysis.py:205: FutureWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
-  iccs = seller_avg.groupby("market_id").apply(icc_by_market)
-
+=========================================================================================================================================
 
 === HEADLINE NUMBERS ===
 bundle_realization_rate: 0.46825520833333334
